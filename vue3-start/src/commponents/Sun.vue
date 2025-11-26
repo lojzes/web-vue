@@ -1,21 +1,23 @@
 <script setup lang="ts">
-import {ref} from 'vue'
+import {ref} from "vue";
 
 const toy = ref('奥特曼')
+const book = ref(3)
 
-// 父传 子：通过 props 传值
-defineProps(['car','sendToy'])
+function subHouse(parent:any){
+  parent.house -= 1
+}
 
+// 向外暴露
+defineExpose({toy,book})
 </script>
 
 <template>
-<h2>子组件:{{toy}}
-</h2>
- <h2>父传子组件:{{car}}
- </h2>
+  <h2>sun</h2>
+  <h2>toy {{toy}}</h2>
+  <h2>book {{book}}</h2>
 
-  <button @click="sendToy(toy)">子传父</button>
-
+  <button @click="subHouse($parent)">减父亲的房产</button>
 </template>
 
 <style scoped>
